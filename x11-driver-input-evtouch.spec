@@ -1,4 +1,4 @@
-Name:       x11-input-driver-evtouch
+Name:       x11-driver-input-evtouch
 Version:    0.8.6
 Release:    %mkrel 1
 Summary:    Linux-Touchscreen Driver for X
