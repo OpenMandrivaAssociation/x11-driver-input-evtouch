@@ -8,7 +8,6 @@ URL:        http://stz-softwaretechnik.com/~ke/touchscreen/evtouch.html
 Source:     http://stz-softwaretechnik.com/~ke/touchscreen/xf86-input-evtouch-%{version}.tar.bz2
 BuildRequires:  x11-proto-devel >= 1.0.0
 BuildRequires:  x11-server-devel >= 1.0.1
-BuildRequires:  x11-util-macros >= 1.0.1
 BuildRoot:      %{_tmppath}/%{name}-%{version}
 
 %description
