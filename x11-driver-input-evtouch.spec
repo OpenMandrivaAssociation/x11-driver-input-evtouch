@@ -33,6 +33,7 @@ rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
+%doc README README.calibration
 %{_libdir}/xorg/modules/input/evtouch_drv.la
 %{_libdir}/xorg/modules/input/evtouch_drv.so
 %{_libdir}/xf86-input-evtouch
