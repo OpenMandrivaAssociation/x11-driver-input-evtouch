@@ -17,10 +17,7 @@ Evtouch is a Touchscreen-Driver for X.
 %setup -q -n xf86-input-evtouch-%{version}
 
 %build
-%configure2_5x \
-    --x-includes=%{_includedir}\
-    --x-libraries=%{_libdir} \
-    --enable-evcalibrate
+%configure2_5x --enable-evcalibrate
 %make
 
 %install
