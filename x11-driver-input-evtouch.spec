@@ -6,8 +6,8 @@ Group:      System/X11
 License: MIT
 URL:        http://stz-softwaretechnik.com/~ke/touchscreen/evtouch.html
 Source:     http://stz-softwaretechnik.com/~ke/touchscreen/xf86-input-evtouch-%{version}.tar.bz2
-BuildRequires:  x11-proto-devel >= 1.0.0
-BuildRequires:  x11-server-devel >= 1.0.1
+BuildRequires:  x11-proto-devel
+BuildRequires:  x11-server-devel
 BuildRoot:      %{_tmppath}/%{name}-%{version}
 
 %description
