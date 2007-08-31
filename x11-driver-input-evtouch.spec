@@ -1,11 +1,12 @@
 Name:       x11-driver-input-evtouch
 Version:    0.8.6
-Release:    %mkrel 3
+Release:    %mkrel 4
 Summary:    Linux-Touchscreen Driver for X
 Group:      System/X11
 License: MIT
 URL:        http://stz-softwaretechnik.com/~ke/touchscreen/evtouch.html
 Source:     http://stz-softwaretechnik.com/~ke/touchscreen/xf86-input-evtouch-%{version}.tar.bz2
+Patch0:	    xf86-input-evtouch-0.8.6-q1u.patch
 BuildRequires:  x11-proto-devel
 BuildRequires:  x11-server-devel
 BuildRoot:      %{_tmppath}/%{name}-%{version}
@@ -15,6 +16,7 @@ Evtouch is a Touchscreen-Driver for X.
 
 %prep
 %setup -q -n xf86-input-evtouch-%{version}
+%patch0 -p1 -b .q1u
 
 %build
 export CURSORDIR=%{_datadir}/xf86-input-evtouch
