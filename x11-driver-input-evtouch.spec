@@ -10,7 +10,6 @@ Patch0:     xf86-input-evtouch-0.8.7-q1u.patch
 Patch1:     xf86-input-evtouch-0.8.7-compile-fix.patch
 BuildRequires:  x11-proto-devel
 BuildRequires:  x11-server-devel
-BuildRoot:      %{_tmppath}/%{name}-%{version}
 
 %description
 Evtouch is a Touchscreen-Driver for X. 
