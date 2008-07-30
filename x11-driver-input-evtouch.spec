@@ -1,6 +1,8 @@
+%define _disable_ld_no_undefined 1
+
 Name:       x11-driver-input-evtouch
 Version:    0.8.7
-Release:    %mkrel 2
+Release:    %mkrel 3
 Summary:    Linux-Touchscreen Driver for X
 Group:      System/X11
 License:    MIT
