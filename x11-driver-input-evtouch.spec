@@ -8,6 +8,7 @@ URL:        http://stz-softwaretechnik.com/~ke/touchscreen/evtouch.html
 Source:     http://stz-softwaretechnik.com/~ke/touchscreen/xf86-input-evtouch-%{version}.tar.bz2
 Patch2:     04_include_xf86_ansic_h.patch
 Patch3:     06_xf86-input-evtouch-0.8.7-misc.patch
+Patch4:     07_random_fixes_for_06.patch
 BuildRequires:  x11-proto-devel
 BuildRequires:  x11-server-devel
 BuildRoot:      %{_tmppath}/%{name}-%{version}
@@ -19,6 +20,7 @@ Evtouch is a Touchscreen-Driver for X.
 %setup -q -n xf86-input-evtouch-%{version}
 %patch2 -p1 -b .ansic
 %patch3 -p1 -b .misc
+%patch4 -p1 -b .fixes
 
 %build
 export CURSORDIR=%{_datadir}/xf86-input-evtouch
