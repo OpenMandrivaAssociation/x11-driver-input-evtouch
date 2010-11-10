@@ -2,7 +2,7 @@
 
 Name:       x11-driver-input-evtouch
 Version:    0.8.8
-Release:    %mkrel 3
+Release:    %mkrel 4
 Summary:    Linux-Touchscreen Driver for X
 Group:      System/X11
 License:    MIT
@@ -15,6 +15,8 @@ Patch2:     03_server-1.6-ftbfs.diff
 BuildRequires:  x11-proto-devel
 BuildRequires:  x11-server-devel
 BuildRoot:      %{_tmppath}/%{name}-%{version}
+
+Requires: x11-server-common %(xserver-sdk-abi-requires xinput)
 
 %description
 Evtouch is a Touchscreen-Driver for X. 
