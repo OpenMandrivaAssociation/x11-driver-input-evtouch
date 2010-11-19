@@ -12,6 +12,7 @@ Source:     http://www.conan.de/touchscreen/xf86-input-evtouch-%{version}.tar.bz
 Patch0:     01_fix_warnings.patch
 Patch1:     02_calibration_1.6.patch
 Patch2:     03_server-1.6-ftbfs.diff
+Patch3:     04_server-1.7-ftbfs.diff
 BuildRequires:  x11-proto-devel
 BuildRequires:  x11-server-devel
 BuildRoot:      %{_tmppath}/%{name}-%{version}
@@ -23,9 +24,7 @@ Evtouch is a Touchscreen-Driver for X.
 
 %prep
 %setup -q -n xf86-input-evtouch-%{version}
-%patch0 -p1 -b .warnings
-%patch1 -p1 -b .calibration
-%patch2 -p1 -b .buildfix
+%apply_patches
 
 %build
 export CURSORDIR=%{_datadir}/xf86-input-evtouch
