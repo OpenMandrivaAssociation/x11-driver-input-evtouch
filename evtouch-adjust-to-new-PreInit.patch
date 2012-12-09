@@ -1,0 +1,132 @@
+--- a/evtouch.c	2011-03-05 18:13:11.000000000 +0200
++++ b/evtouch.c	2011-03-05 19:45:20.992993337 +0200
+@@ -100,9 +100,13 @@
+  *        Local Variables
+  ****************************************************************************/
+ 
+-
++#if GET_ABI_MAJOR(ABI_XINPUT_VERSION) < 12
+ static InputInfoPtr
+ EVTouchPreInit(InputDriverPtr drv, IDevPtr dev, int flags);
++#else
++static int
++EVTouchPreInit(InputDriverPtr drv, InputInfoPtr dev, int flags);
++#endif
+ static void
+ EVTouchPtrCtrl(DeviceIntPtr device, PtrCtrl *ctrl);
+ static Bool
+@@ -120,14 +124,27 @@ ConvertProc ( InputInfoPtr local,
+ 
+ static int debug_level = 0;
+ 
++static const char *default_options[] =
++{
++        "BaudRate", "9600",
++        "StopBits", "1",
++        "DataBits", "8",
++        "Parity", "None",
++        "Vmin", "5",
++        "Vtime", "1",
++        "FlowControl", "None"
++};
++
+ InputDriverRec EVTOUCH = {
+         1,
+         "evtouch",
+         NULL,
+         EVTouchPreInit,
+         /*EVTouchUnInit*/ NULL,
+-        NULL,
+-        0
++        NULL
++#if GET_ABI_MAJOR(ABI_XINPUT_VERSION) < 12
++       , default_options
++#endif
+ };
+ 
+ static XF86ModuleVersionInfo VersionRec =
+@@ -167,17 +184,6 @@ Unplug(pointer p)
+ _X_EXPORT XF86ModuleData evtouchModuleData = {&VersionRec, Plug, Unplug };
+ 
+ 
+-static const char *default_options[] =
+-{
+-        "BaudRate", "9600",
+-        "StopBits", "1",
+-        "DataBits", "8",
+-        "Parity", "None",
+-        "Vmin", "5",
+-        "Vtime", "1",
+-        "FlowControl", "None"
+-};
+-
+ static int
+ ControlProc(InputInfoPtr device, xDeviceCtl *ctrl);
+ 
+@@ -1271,11 +1277,13 @@ ConvertProc ( InputInfoPtr local,
+         return (TRUE);
+ }
+ 
+-
+-
+-
++#if GET_ABI_MAJOR(ABI_XINPUT_VERSION) < 12
+ static InputInfoPtr
+ EVTouchPreInit(InputDriverPtr drv, IDevPtr dev, int flags)
++#else
++static int
++EVTouchPreInit(InputDriverPtr drv, InputInfoPtr dev, int flags)
++#endif
+ {
+         /* InputInfoPtr local; */
+         InputInfoPtr local;
+@@ -1291,31 +1299,37 @@ EVTouchPreInit(InputDriverPtr drv, IDevP
+ 
+         priv = calloc (1, sizeof (EVTouchPrivateRec));
+         if (!priv)
+-                return NULL;
++                return BadAlloc;
+ 
++#if GET_ABI_MAJOR(ABI_XINPUT_VERSION) < 12
+         local = xf86AllocateInput(drv, 0);
+         if (!local) {
+                 free(priv);
+-                return NULL;
++                return BadAlloc;
+         }
+ 
+         local->name = xstrdup(dev->identifier);
++#endif
+         local->type_name = XI_TOUCHSCREEN;
+         local->device_control = DeviceControl;
+         local->read_input = ReadInput;
+         local->control_proc = ControlProc;
+         local->switch_mode = SwitchMode;
++#if GET_ABI_MAJOR(ABI_XINPUT_VERSION) < 12
+         local->conversion_proc = ConvertProc;
+         local->reverse_conversion_proc = NULL;
++#endif
+         local->fd = -1;
+         local->dev = NULL;
+         local->private = priv;
+         priv->local = local;
++#if GET_ABI_MAJOR(ABI_XINPUT_VERSION) < 12
+         local->private_flags = 0;
+         local->flags = XI86_POINTER_CAPABLE | XI86_SEND_DRAG_EVENTS;
+         local->conf_idev = dev;
+ 
+         xf86CollectInputOptions(local, default_options, NULL);
++#endif
+ 
+         xf86OptionListReport(local->options);
+ 
+@@ -1411,7 +1425,9 @@ EVTouchPreInit(InputDriverPtr drv, IDevP
+         /* this results in an xstrdup that must be freed later */
+         local->name = xf86SetStrOption( local->options, "DeviceName", "EVTouch TouchScreen" );
+         xf86ProcessCommonOptions(local, local->options);
++#if GET_ABI_MAJOR(ABI_XINPUT_VERSION) < 12
+         local->flags |= XI86_CONFIGURED;
++#endif
+ 
+         xf86CloseSerial(local->fd);
+         local->fd = -1;

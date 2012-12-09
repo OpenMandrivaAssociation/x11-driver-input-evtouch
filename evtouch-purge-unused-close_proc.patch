@@ -1,0 +1,10 @@
+--- a/evtouch.c	2011-03-05 15:26:54.000000000 +0200
++++ b/evtouch.c	2011-03-05 15:33:32.770696221 +0200
+@@ -1296,7 +1296,6 @@ EVTouchPreInit(InputDriverPtr drv, IDevP
+         local->device_control = DeviceControl;
+         local->read_input = ReadInput;
+         local->control_proc = ControlProc;
+-        local->close_proc = CloseProc;
+         local->switch_mode = SwitchMode;
+         local->conversion_proc = ConvertProc;
+         local->reverse_conversion_proc = NULL;

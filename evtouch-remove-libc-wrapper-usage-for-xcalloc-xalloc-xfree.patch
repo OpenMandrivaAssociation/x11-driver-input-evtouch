@@ -1,0 +1,54 @@
+--- a/evtouch.c	2011-03-05 15:09:46.000000000 +0200
++++ b/evtouch.c	2011-03-05 15:15:22.000217132 +0200
+@@ -646,7 +646,7 @@ DeviceOff (DeviceIntPtr dev)
+ static Atom *EvtouchInitButtonLabels(void)
+ {
+ #ifdef HAVE_LABELS
+-    Atom *labels = xalloc(EV_MAX_BUTTONS * sizeof(Atom));
++    Atom *labels = alloc(EV_MAX_BUTTONS * sizeof(Atom));
+ 
+     /* initialize the 5 button labels used by this driver */
+     labels[0] = XIGetKnownProperty(BTN_LABEL_PROP_BTN_LEFT);
+@@ -772,7 +772,7 @@ DeviceInit (DeviceIntPtr dev)
+ 
+         DBGOUT(2, "EVTouch: %s btn_count=%d\n", __FUNCTION__,
+                priv->btn_count);
+-        priv->btn_actions = xcalloc(priv->btn_count, sizeof(BtnAction));
++        priv->btn_actions = calloc(priv->btn_count, sizeof(BtnAction));
+         memset(priv->btn_actions, 0,
+                priv->btn_count * sizeof(BtnAction));
+ 
+@@ -788,7 +788,7 @@ DeviceInit (DeviceIntPtr dev)
+          * Device reports motions on 2 axes in absolute coordinates.
+          * Axes min and max values are reported in raw coordinates.
+          */
+-	atoms = xalloc(2 * sizeof(Atom));
++	atoms = alloc(2 * sizeof(Atom));
+ 	EvtouchInitAxesLabels(priv, 2, atoms);
+ 
+         if (InitValuatorClassDeviceStruct(dev, 2,
+@@ -1278,13 +1278,13 @@ EVTouchPreInit(InputDriverPtr drv, IDevP
+ 
+         DBGOUT(2, "EVTouch: %s\n", __FUNCTION__);
+ 
+-        priv = xcalloc (1, sizeof (EVTouchPrivateRec));
++        priv = calloc (1, sizeof (EVTouchPrivateRec));
+         if (!priv)
+                 return NULL;
+ 
+         local = xf86AllocateInput(drv, 0);
+         if (!local) {
+-                xfree(priv);
++                free(priv);
+                 return NULL;
+         }
+ 
+@@ -1309,7 +1309,7 @@ EVTouchPreInit(InputDriverPtr drv, IDevP
+ 
+         xf86OptionListReport(local->options);
+ 
+-	priv->libtouch = xcalloc(1, sizeof(LibTouchRec));
++	priv->libtouch = calloc(1, sizeof(LibTouchRec));
+ 	libtouchInit(priv->libtouch, local);
+ 
+         priv->screen_num    = xf86SetIntOption(local->options, "ScreenNumber", 0 );

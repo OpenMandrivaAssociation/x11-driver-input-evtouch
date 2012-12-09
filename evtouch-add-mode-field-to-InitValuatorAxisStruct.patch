@@ -1,0 +1,28 @@
+--- a/evtouch.c	2011-03-05 15:33:32.000000000 +0200
++++ b/evtouch.c	2011-03-05 17:32:44.110524932 +0200
+@@ -814,7 +814,11 @@
+ 			           0, priv->screen_width,
+                                    1024,
+                                    EV_AXIS_MIN_RES /* min_res */ ,
+-                                   EV_AXIS_MAX_RES /* max_res */ );
++                                   EV_AXIS_MAX_RES /* max_res */
++#if GET_ABI_MAJOR(ABI_XINPUT_VERSION) >= 12
++				   , Absolute
++#endif
++				   );
+         xf86InitValuatorDefaults(dev, 0);
+         xf86InitValuatorAxisStruct(dev, 1,
+ #if GET_ABI_MAJOR(ABI_XINPUT_VERSION) >= 7
+@@ -823,7 +827,11 @@
+                                    0, priv->screen_height,
+                                    1024,
+                                    EV_AXIS_MIN_RES /* min_res */ ,
+-                                   EV_AXIS_MAX_RES /* max_res */ );
++                                   EV_AXIS_MAX_RES /* max_res */
++#if GET_ABI_MAJOR(ABI_XINPUT_VERSION) >= 12
++				   , Absolute
++#endif
++				   );
+         xf86InitValuatorDefaults(dev, 1);
+ #else
+ 	xf86InitValuatorAxisStruct(dev, 0, priv->min_x, priv->max_x,
