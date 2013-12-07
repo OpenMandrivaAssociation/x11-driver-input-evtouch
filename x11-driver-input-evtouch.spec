@@ -3,7 +3,7 @@
 Summary:    Linux-Touchscreen Driver for X
 Name:       x11-driver-input-evtouch
 Version:    0.8.8
-Release:    10
+Release:    11
 Group:      System/X11
 License:    MIT
 Url:        http://www.conan.de/touchscreen/evtouch.html
