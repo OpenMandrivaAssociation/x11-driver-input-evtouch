@@ -3,7 +3,7 @@
 Summary:    Linux-Touchscreen Driver for X
 Name:       x11-driver-input-evtouch
 Version:    0.8.8
-Release:    20
+Release:    21
 Group:      System/X11
 License:    MIT
 Url:        http://www.conan.de/touchscreen/evtouch.html
@@ -34,7 +34,7 @@ Evtouch is a Touchscreen-Driver for X.
 
 %build
 export CURSORDIR=%{_datadir}/xf86-input-evtouch
-%configure2_5x --enable-evcalibrate
+%configure --enable-evcalibrate
 %make
 
 %install
@@ -45,4 +45,3 @@ export CURSORDIR=%{_datadir}/xf86-input-evtouch
 %{_libdir}/xorg/modules/input/evtouch_drv.so
 %{_libdir}/xf86-input-evtouch
 %{_datadir}/xf86-input-evtouch
-
