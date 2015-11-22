@@ -1,3 +1,4 @@
+%define _disable_rebuild_configure 1
 %define _disable_ld_no_undefined 1
 
 Summary:    Linux-Touchscreen Driver for X
@@ -24,6 +25,8 @@ Patch9:     evtouch-adjust-to-new-PreInit.patch
 BuildRequires:  pkgconfig(xorg-server)
 BuildRequires:  pkgconfig(xproto)
 Requires:	x11-server-common %(xserver-sdk-abi-requires xinput)
+# needed for ev_calibrate
+Requires:	fonts-ttf-freefont
 
 %description
 Evtouch is a Touchscreen-Driver for X.
