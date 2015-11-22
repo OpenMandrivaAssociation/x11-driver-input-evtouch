@@ -36,6 +36,7 @@ Evtouch is a Touchscreen-Driver for X.
 %apply_patches
 
 %build
+%define _disable_lto 1
 export CURSORDIR=%{_datadir}/xf86-input-evtouch
 %configure --enable-evcalibrate
 %make
