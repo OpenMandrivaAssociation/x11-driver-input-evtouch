@@ -33,7 +33,7 @@ Evtouch is a Touchscreen-Driver for X.
 
 %prep
 %setup -qn xf86-input-evtouch-%{version}
-%apply_patches
+%autopatch -p1
 
 %build
 %define _disable_lto 1
