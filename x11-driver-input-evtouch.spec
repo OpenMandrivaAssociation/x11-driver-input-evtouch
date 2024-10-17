@@ -7,7 +7,7 @@ Version:    0.8.8
 Release:    25
 Group:      System/X11
 License:    MIT
-Url:        http://www.conan.de/touchscreen/evtouch.html
+Url:        https://www.conan.de/touchscreen/evtouch.html
 Source0:     http://www.conan.de/touchscreen/xf86-input-evtouch-%{version}.tar.bz2
 # Debian patches
 Patch0:     01_fix_warnings.patch
