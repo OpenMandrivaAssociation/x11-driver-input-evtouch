@@ -22,6 +22,11 @@ Patch7:     evtouch-purge-unused-close_proc.patch
 Patch8:     evtouch-add-mode-field-to-InitValuatorAxisStruct.patch
 Patch9:     evtouch-adjust-to-new-PreInit.patch
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:  pkgconfig(xorg-server)
 BuildRequires:  pkgconfig(xproto)
 Requires:	x11-server-common %(xserver-sdk-abi-requires xinput)
